@@ -38,6 +38,24 @@
 	);";
 
 	$conn->query($sql) or die("failed!");
+
+	$sql = "CREATE TABLE IF NOT EXISTS hairdressingsalons (
+	    id INT(11) NOT NULL AUTO_INCREMENT,
+	    name VARCHAR(30) COLLATE utf8_bin NOT NULL,
+	    address VARCHAR(50) COLLATE utf8_bin NOT NULL,
+	    telephone VARCHAR(50),
+	    email VARCHAR(50),
+	    workingHours VARCHAR(400) COLLATE utf8_bin NOT NULL,
+	    manicure VARCHAR(10) COLLATE utf8_bin,
+	    pedicure VARCHAR(10) COLLATE utf8_bin,
+	    makeup VARCHAR(10) COLLATE utf8_bin,
+	    description VARCHAR(8000) COLLATE utf8_bin,
+	    img VARCHAR(255),
+	    PRIMARY KEY(id)
+	);";
+
+	$conn->query($sql) or die("failed!");
+
 } catch(PDOEXception $e) {
 	die("Connection error:".$e->getMessage());
 }

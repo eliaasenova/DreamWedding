@@ -29,7 +29,8 @@
 				<li><a class="navButtons navColor" href="homePage.php"> Начало </a></li>
 				<li><a class="navButtons navColor" href="atelierPage.php">Ателиета</a></li>
 				<li><a class="navButtons navColor" href="restaurants.php"> Ресторанти </a></li>
-				<li><a class="navButtons navColor" href="guestList.php"> Планировчик </a></li>					
+				<li><a class="navButtons navColor" href="hairdressingSalons.php">Фризьорски салони</a></li>
+				<li><a class="navButtons navColor" href="guestList.php"> Планировчик </a></li>				
 			</ul>
 		</nav>
 	</div>
