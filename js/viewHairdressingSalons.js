@@ -132,5 +132,5 @@ var xhttp = new XMLHttpRequest();
     	}
   	}
 	};
-	xhttp.open("POST", "getForViewHairdressing.php", true);
+	xhttp.open("POST", 'getForViewHairdressing.php', true);
   	xhttp.send();

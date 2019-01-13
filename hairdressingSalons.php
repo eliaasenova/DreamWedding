@@ -112,7 +112,7 @@
 		</form>
 	</div>
 	<?php
-		$_SESSION['searchedItem'] = $_GET['hairdressingSalonSearchBar'];
+		$_SESSION['searchedItem'] = $_GET['hairdressingSalonsSearchBar'];
 	?>
 	<div id = "hairdressingSalonsDiv"></div>
 	<script type="text/javascript" src="js/searchHairdressingSalonByName.js"></script>

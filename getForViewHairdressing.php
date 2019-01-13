@@ -1,20 +1,17 @@
 <?php
 	session_start();
-	$serverName = "localhost";
-	$dbName = "dreamweddingdatabase";
-	$username = "root";
-	$password = "";
-
-	try{
-		$conn = new PDO("mysql:host=$serverName;dbname=$dbName;charset=utf8", $username, $password);
-		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$sql = 'SELECT * FROM HAIRDRESSINGSALONS
-		WHERE id="' . $_SESSION['viewedHairdressingSalon'] . '"';
-		$query = $conn->query($sql) or die("failed");
-		$result = $query->fetchAll(PDO::FETCH_ASSOC);
-		$json = json_encode($result, JSON_UNESCAPED_UNICODE);
-		echo $json;
-	} catch (PDOException $e){
-		die("Connection error:".$e->getMessage());
+	
+	$id = $_SESSION['viewedHairdressingSalon'];
+	$service_url = 'http://localhost:8080/DreamWeddingHairdressingSalonsServer/viewSalon/'.$id;
+	$curl = curl_init($service_url);
+	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+	$curl_response = curl_exec($curl);
+	if ($curl_response === false) {
+    	$info = curl_getinfo($curl);
+    	curl_close($curl);
+    	die('error occured during curl exec. Additional info: ' . var_export($info));
 	}
+
+	curl_close($curl);
+	echo $curl_response; 
 ?>

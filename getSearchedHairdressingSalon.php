@@ -1,28 +1,25 @@
 <?php
 	session_start();
-	$serverName = "localhost";
-	$dbName = "DreamWeddingDatabase";
-	$username = "root";
-	$password = "";
+	
 	function test_input($data) {
   		$data = trim($data);
   		$data = stripslashes($data);
   		$data = htmlspecialchars($data);
   		return $data;
 	}
-
-	try{
-		$conn = new PDO("mysql:host=$serverName;dbname=$dbName;charset=utf8", $username, $password);
-		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$sql = 'SELECT * FROM HAIRDRESSINGSALONS
-		WHERE name="'. $_SESSION['searchedItem'] . '"';
-		$query = $conn->query($sql) or die("failed");
-		$hairdressingSalonRow = $query->fetchAll(PDO::FETCH_ASSOC);
-		$json = json_encode($hairdressingSalonRow, JSON_UNESCAPED_UNICODE);
-		// var_dump($json);
-		echo $json;
-	}catch (PDOException $e){
-		die("Connection error:".$e->getMessage());
+	
+	$searchedItem = $_SESSION['searchedItem'];
+	$service_url = 'http://localhost:8080/DreamWeddingHairdressingSalonsServer/searchSalon/'.$searchedItem;
+	$curl = curl_init($service_url);
+	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+	$curl_response = curl_exec($curl);
+	if ($curl_response === false) {
+    	$info = curl_getinfo($curl);
+    	curl_close($curl);
+    	die('error occured during curl exec. Additional info: ' . var_export($info));
 	}
+
+	curl_close($curl);
+	echo $curl_response; 
 
 ?>

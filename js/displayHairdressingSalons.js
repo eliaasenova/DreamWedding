@@ -37,6 +37,6 @@ xhttp.onreadystatechange = function() {
     	}
   	}
 	};
-	xhttp.open("POST", "getHairdressingSalons.php", true);
+	xhttp.open("POST", 'getHairdressingSalons.php', true);
   	xhttp.send();
 
